@@ -1,0 +1,27 @@
+{
+  "name": "knockout-requirejs_nwjs",
+  "version": "0.0.1",
+  "authors": [
+    "vicolachips44 <vga@decatime.org>"
+  ],
+  "description": "boilerplate project for nwjs and knockout",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "underscore": "~1.8.3",
+    "knockout": "~3.3.0",
+    "requirejs": "~2.1.17",
+    "bootstrap": "~3.3.4",
+    "globalize": "~1.0.0",
+    "toastr": "~2.1.1",
+    "bootbox": "~4.4.0",
+    "requirejs-text": "~2.0.14"
+  }
+}

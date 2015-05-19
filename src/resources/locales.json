@@ -1,0 +1,22 @@
+{
+  "fr": {
+    "common": {
+      "hello": "Bienvenue dans skiny compta!"
+    },
+    "menu": {
+      "new": "Nouveau",
+      "delete": "Supprimer",
+      "quit": "Quitter"
+    }
+  },
+  "en": {
+    "common": {
+      "hello": "Welcome to skiny account manager!"
+    },
+    "menu": {
+      "new": "New",
+      "delete": "Delete",
+      "quit": "Quit"
+    }
+  }
+}

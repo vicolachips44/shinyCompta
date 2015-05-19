@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knockout example</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel=stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/toastr.min.css">
+    <link rel="stylesheet" href="css/skinycompta.css">
+  </head>
+  <body>
+    <div id="ko_active_controller" data-value="welcome"/>
+
+    <div id="ko_main_menu" class="container-fluid">
+      <nav class="navbar navbar-default navbar-static-top"
+        data-bind='component: {name: "tca-menu", params: {facade: $root, context: "home"}}'>
+      </nav>
+
+      <div id="ko_page_content"></div>
+    </div>
+
+    <script type="text/javascript" src="js/bootloader.js"></script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "appenders": [
+    {
+      "type": "file",
+      "filename": "../skiny-debug.log",
+      "maxLogSize": 20480,
+      "backups": 0,
+      "category": "skiny"
+    }
+  ]
+}

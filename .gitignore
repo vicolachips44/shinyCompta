@@ -1,0 +1,9 @@
+# to be completed
+distrib/
+node_modules/
+src/vendor/
+src/node_modules/
+src/css/
+src/fonts/
+skiny-debug.log
+
