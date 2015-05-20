@@ -6,6 +6,14 @@ define([
   'language',
   'skinydb',
   'menuViewModel'],
+/**
+ * This module is the main entry point of the application.
+ *
+ * @exports Facade
+ *
+ * @param {object} $ the jquery instance
+ * @param {object} _ the underscore instance
+ */
 function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
 
   var
@@ -42,16 +50,30 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
     }
     ; /** private stuff END **/
 
+  /**
+   * Declare a _this pointer
+   * @constructor
+   */
   function Facade() {
-    this.logger = null;
     _this = this;
   }
 
+  /**
+   * Facade members instance
+   *
+   * @prototype
+   */
   Facade.prototype = {
     constructor: Facade,
 
     /**
-     * all initialization routines goes here.
+     * <h4>all initialization routines goes here.</h4>
+     * Get a pointer to nwjs App instance, a pointer on nwWindow instance.
+     * Initialize the logger object, the language object, the dbObject.
+     * Has two observable. The first is for the active selected account, the second
+     * is a context value that changes when a new controller is loaded.
+     *
+     * @param {object} params Parameters for the application.
      *
      */
     initialize: function(params) {
@@ -73,6 +95,8 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
 
     /**
      * Gets the controller instance from the view and load it.
+     *
+     * @data {any} additional element that the controller might require.
      */
     boot: function(data) {
 

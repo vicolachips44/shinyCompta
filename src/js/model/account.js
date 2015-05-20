@@ -1,9 +1,25 @@
-define(['knockout', 'accountValidator', 'jquery'], function(ko, AccountValidator, $) {
+define([
+  'knockout',
+  'accountValidator',
+  'jquery'
+],
+/**
+ * This is the Account object.
+ * Account object can have one ore more Expense object
+ *
+ * @exports Account
+ */
+function(ko, AccountValidator, $) {
 
   'use strict';
 
   var _validator = null;
 
+  /**
+   * Account constructor
+   *
+   * @constructor
+   */
   function Account() {
     this.name         = ko.observable('');
     this.amount       = ko.observable(0);
@@ -12,6 +28,12 @@ define(['knockout', 'accountValidator', 'jquery'], function(ko, AccountValidator
 
   Account.prototype.constructor = Account;
 
+  /**
+   * Return a simple object made by properties of this
+   * object with out the binding stuff made by knockout.
+   *
+   * @returns {object} simple DTO object
+   */
   Account.prototype.toDto = function() {
     return {
       accTypeId: this.accTypeId(),
@@ -20,6 +42,11 @@ define(['knockout', 'accountValidator', 'jquery'], function(ko, AccountValidator
     };
   };
 
+  /**
+   * Exposes the Validator instance of this object.
+   *
+   * @returns {object} The validator instance
+   */
   Account.prototype.getValidator = function() {
     if (_validator === null) {
       _validator = new AccountValidator(this);

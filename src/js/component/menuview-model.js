@@ -11,9 +11,9 @@ define(['knockout'], function(ko) {
     this.facade.logger.trace('in MenuViewModel component constructor');
 
     this.accountList = ko.observableArray(this.facade.db.account.items);
-    this.btnNew      = ko.observable(this.facade.lng.get('menu/new'));
-    this.btnDelete   = ko.observable(this.facade.lng.get('menu/delete'));
-    this.btnQuit     = ko.observable(this.facade.lng.get('menu/quit'));
+    this.btnNew      = this.facade.lng.get('menu/new');
+    this.btnDelete   = this.facade.lng.get('menu/delete');
+    this.btnQuit     = this.facade.lng.get('menu/quit');
 
     this.facade.logger.trace('MenuViewModel:: constructor > observable setted!');
 
