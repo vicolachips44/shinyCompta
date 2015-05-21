@@ -1,22 +1,28 @@
 {
   "fr": {
     "common": {
-      "hello": "Bienvenue dans skiny compta!"
+      "hello": "Bienvenue dans skiny compta! commençons par créer un Compte"
     },
     "menu": {
       "new": "Nouveau",
       "delete": "Supprimer",
       "quit": "Quitter"
+    },
+    "account": {
+      "newAccount": "Nouveau Compte"
     }
   },
   "en": {
     "common": {
-      "hello": "Welcome to skiny account manager!"
+      "hello": "Welcome to skiny account manager! let's start with a new Account"
     },
     "menu": {
       "new": "New",
       "delete": "Delete",
       "quit": "Quit"
+    },
+    "account": {
+      "newAccount": "New Account"
     }
   }
 }

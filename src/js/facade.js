@@ -134,15 +134,16 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
       var ctrl = $('#ko_active_controller').data('value'), binding = null;
       this.logger.trace('active controller instance name is ' + ctrl);
 
-      requirejs([ctrl], function(controller) {
-        _this.logger.trace('cleaning bindings before for controller ' + ctrl);
+      requirejs([ctrl], function(Ctrl) {
+        _this.logger.trace('cleaning bindings before running controller ' + ctrl);
 
         binding = $('#ko_page_content')[0];
         ko.cleanNode(binding);
 
         _this.context(ctrl);
 
-        controller.load(_this, data);
+        var ctl = new Ctrl(_this);
+        ctl.load(data);
       });
     },
 

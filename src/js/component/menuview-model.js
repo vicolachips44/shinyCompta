@@ -36,6 +36,7 @@ function(ko) {
 
     this.facade.context.subscribe(function(newValue) {
       _this.facade.logger.trace('MenuViewModel::context changing to ' + newValue);
+
       if (newValue === 'welcome') {
         $('#menuview_btnAddAccount').show();
         $('#menuview_btnDeleteAccount').show();

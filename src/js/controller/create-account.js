@@ -1,18 +1,21 @@
 define([
+  'jquery',
   'knockout',
-  'account'
+  'account',
+  'toastr'
 ],
 /**
  * CreateAccount controller.
  *
  * @exports controller/createAccount
  */
-function(ko, Account) {
+function($, ko, Account, toastr) {
 
   'use strict';
 
   var _html = null,
-  _this,
+    _this = null,
+
   /**
    * create bindings for the view
    */
@@ -22,19 +25,31 @@ function(ko, Account) {
     _this.welcomeMsg   = ko.observable('');
   };
 
-  return {
-    /**
-     * Loads the controller and applies the binding on the view.
-     */
-    load: function(facade, firstrun) {
-      this.facade   = facade;
-      _this         = this;
+  /**
+   * CreateAccount constructor
+   *
+   * @constructor
+   */
+  function CreateAccount(facade) {
+    _this = this;
+    this.facade = facade;
 
+    _initBindings();
+  }
+
+  CreateAccount.prototype = {
+    constructor: CreateAccount,
+
+    /**
+     * Load the controller and update bindings.
+     *
+     */
+    load: function(firstrun) {
       if (_html === null) {
         _html = require('fs').readFileSync('templates/createAccount.html', 'utf8');
       }
 
-      facade.logger.trace('in createAccount controller load function');
+      this.facade.logger.trace('in createAccount controller load function');
       $('#ko_page_content').html(_html);
 
       _initBindings();
@@ -42,31 +57,38 @@ function(ko, Account) {
       this.accountTypes(this.facade.db.accountType.items);
 
       if (firstrun) {
-        this.welcomeMsg('Bienvenue dans shinyCompta. Pour commencer merci de créer un compte');
+        this.welcomeMsg(this.facade.lng.get('common/hello'));
       } else {
-        this.welcomeMsg('Nouveau compte');
+        this.welcomeMsg(this.facade.lng.get('account/newAccount'));
       }
 
       var binding = $('#ko_page_content')[0];
       ko.applyBindings(this, binding);
 
       this.facade.logger.trace('binding done for createAccount controller');
+      $('#createAccount_account_name').focus();
     },
 
     /**
-     * User has click on save button
+     * User has clicked on save button
      */
     onBtnSaveClick: function() {
-
       if (this.account.getValidator().validate()) {
-        this.facade.db.account.insert(this.account.toDto());
+        var cid = this.facade.db.account.insert(this.account.toDto());
+        this.account.cid(cid);
+
         toastr.info('Le compte ' + this.account.name() + ' à été créé!');
         this.facade.redirect('welcome');
       }
     },
 
+    /**
+     * User has clicked on cancel button
+     */
     onBtnCancelClick: function() {
       this.facade.redirect('welcome');
     }
   };
+
+  return CreateAccount;
 });

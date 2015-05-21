@@ -21,6 +21,9 @@ function(ko, AccountValidator, $) {
    * @constructor
    */
   function Account() {
+    /** @property name {Observable-int} The cid of the account **/
+    this.cid = ko.observable(-1);
+
     /** @property name {Observable-string} The name of the account **/
     this.name = ko.observable('');
 

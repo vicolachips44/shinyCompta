@@ -13,16 +13,27 @@ function($, ko, html) {
   'use strict';
 
   var _html = null,
-  _this;
+  _this = null;
 
-  return {
+  /**
+   * Default constructor for Welcome
+   *
+   * @constructor
+   */
+  function Welcome(facade) {
+    _this = this;
+
+    /** @property {object} facade a pointer to the facade instance **/
+    this.facade = facade;
+  }
+
+  Welcome.prototype = {
+    constructor: Welcome,
+
     /**
      * Loads the controller and bind values.
      */
-    load: function(facade) {
-      this.facade = facade;
-      _this = this;
-
+    load: function() {
       if (this.facade.db.account.items.length === 0) {
         // there is no account created
         this.facade.redirect('createAccount', true);
@@ -33,9 +44,9 @@ function($, ko, html) {
         _html = require('fs').readFileSync('templates/welcome.html', 'utf8');
       }
 
-      this.greeting = facade.lng.get('common/hello');
+      this.greeting = this.facade.lng.get('common/hello');
 
-      facade.logger.trace('in welcome controller load function');
+      this.facade.logger.trace('in welcome controller load function');
       $('#ko_page_content').html(_html);
 
       var binding = $('#ko_page_content')[0];
@@ -45,4 +56,5 @@ function($, ko, html) {
     }
   };
 
+  return Welcome;
 });
