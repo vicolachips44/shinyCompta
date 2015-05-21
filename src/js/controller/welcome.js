@@ -1,12 +1,33 @@
-define(['jquery', 'knockout'], function($, ko, html) {
+define([
+  'jquery',
+  'knockout'
+],
+/**
+ * Welcome controller
+ *
+ * @exports controller/welcome
+ *
+ **/
+function($, ko, html) {
+
+  'use strict';
 
   var _html = null,
   _this;
 
   return {
+    /**
+     * Loads the controller and bind values.
+     */
     load: function(facade) {
       this.facade = facade;
       _this = this;
+
+      if (this.facade.db.account.items.length === 0) {
+        // there is no account created
+        this.facade.redirect('createAccount', true);
+        return;
+      }
 
       if (_html === null) {
         _html = require('fs').readFileSync('templates/welcome.html', 'utf8');

@@ -6,7 +6,7 @@ define([
  * This is the Expense object. An Expense is the child
  * of an Account object.
  *
- * @exports Expense
+ * @exports modele/Expense
  */
 function(ko) {
 
@@ -20,13 +20,28 @@ function(ko) {
    * @param {object} expense an expense object for init.
    */
   function Expense(expense) {
+    /** @property accId {Observable-int} The Account parent id **/
     this.accId = ko.observable(expense.accId);
+
+    /** @property date {Observable-string} Date of the expense **/
     this.date = ko.observable(expense.date);
+
+    /** @property mvTypeValue {Observable-int} The Mouvment type value (1 or -1) **/
     this.mvTypeValue = ko.observable(expense.mvTypeValue);
+
+    /** @property thirdPartyId {Observable-string} Third party id **/
     this.thirdPartyId = ko.observable(expense.thirdPartyId);
+
+    /** @property description {Observable-string} A description for this expense **/
     this.description = ko.observable(expense.description);
+
+    /** @property amount {Observable-float} The amount value **/
     this.amount = ko.observable(expense.amount);
+
+    /** @property balance {Observable-float} Technical field to calculate current amount **/
     this.balance = ko.observable(expense.balance);
+
+    /** @property cid {Observable-int} The id of this instance **/
     this.cid = ko.observable(expense.cid);
   }
 

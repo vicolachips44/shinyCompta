@@ -7,7 +7,17 @@ define([
   'skinydb',
   'menuViewModel'],
 /**
- * This module is the main entry point of the application.
+ * The facade module contains the Facade object witch is a centric object
+ * within the application. The Facade object contains links to:
+ * <ul>
+ *  <li>The nwjs Application instance</li>
+ *  <li>The nwjs Window instance</li>
+ *  <li>The logging system</li>
+ *  <li>The language tool object</li>
+ *  <li>The database layer</li>
+ * </ul>
+ * The Facade exposes single observable type property that is updated
+ * whenever the controller is about to change.
  *
  * @exports Facade
  *
@@ -51,7 +61,8 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
     ; /** private stuff END **/
 
   /**
-   * Declare a _this pointer
+   * Default constructor
+   *
    * @constructor
    */
   function Facade() {
@@ -78,37 +89,54 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
      */
     initialize: function(params) {
 
+      /** @property params {object} the parameters value of the application */
       this.params        = params;
+
+      /** @property apps {object} the nwjs application object */
       this.app           = nwgui.App;
+
+      /** @property win {object} the nwjs window object */
       this.win           = nwWindow;
+
+      /** @property debugMode {boolean} debug mode flag */
       this.debugMode     = params.debugMode;
+
+      /** @property logger {object} The Logger object instance */
       this.logger        = new Logger(this);
+
+      /** @property lng {object} The Language object instance */
       this.lng           = new Language(this);
+
+      /** @property db {object} The db object instance */
       this.db            = new SkinyDb(this);
+
+      /** @property activeAccount {Observable} The knockout binding for the active selected account */
       this.activeAccount = ko.observable('');
+
+      /** @property context {Observable} The knockout binding for the controller context value */
       this.context       = ko.observable('');
 
       this.win.on('minimize', _minimizeRoutine);
       _loadKoComp();
+
       ko.applyBindings(this, $('#ko_main_menu')[0]);
     },
 
     /**
      * Gets the controller instance from the view and load it.
+     * The controller name is defined in the view layer inside a div element called #ko_active_controller
+     * We use requirejs closure mecanism to invoke its load method.
      *
-     * @data {any} additional element that the controller might require.
+     * @param data {any} additional element that the controller might require.
      */
     boot: function(data) {
 
-      // we load the actual controller definition from the ko_active_controller div
       var ctrl = $('#ko_active_controller').data('value'), binding = null;
       this.logger.trace('active controller instance name is ' + ctrl);
 
-      // we try to call it's load method
       requirejs([ctrl], function(controller) {
         _this.logger.trace('cleaning bindings before for controller ' + ctrl);
 
-        // controller exists we clear bindings
         binding = $('#ko_page_content')[0];
         ko.cleanNode(binding);
 
@@ -122,8 +150,8 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
      * Redirect will get the value of the controller name
      * and load it.
      *
-     * @param String ctlname the name of the controller
-     * @param mixed data any data relevant for the invoked controller
+     * @param {string} ctlname the name of the controller
+     * @param {mixed}  data    any data relevant for the invoked controller
      *
      * @return void
      */

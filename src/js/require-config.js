@@ -54,38 +54,25 @@ requirejs.config({
   }
 });
 
-/** @module _main **/
+/**------------------------------------------------------------------
+ * This is the bootloader entry point of the application.
+ * Controllers module must be setted has dependencies here since
+ * they are loaded dynamically. When running the optimizer, these
+ * dependencies will then be included.
+ *-------------------------------------------------------------------
+ * @module _main
+ * **/
 requirejs([
-    'jquery',
-    'bootstrap',
-    'facade',
-    // controllers
-    'welcome',
-    'createAccount'
+  'jquery',
+  'bootstrap',
+  'facade',
+  // BEGIN controllers-----------------------------------------------
+  'welcome',
+  'createAccount'
+  // END controllers-------------------------------------------------
 ],
-/** @function
- *
- * <p>Requirejs entry point is here. We make sure that
- * jquery is loaded before starting up the application.
- * The entry point of this application is Facade object (@see module:Facade).
- * Since controllers are loaded inside the body of Facade instance
- * we must require them here in order that the optimizer (the tool
- * to minimize JS) will insert them in the flow.</p>
- *
- * <p>The only reference to js in the index.html is a file called bootloader.js
- * In developpment cycle, this file only loads the require-config file
- * and sets a top level value to put the environment in debug mode.
- * In production cycle, the bootloader.js file becomes the result of the
- * optimizer requirejs process. Then, the <b>skinyDebugMode</b> property
- * will not be defined. That is used  by the logger object to set the log level
- * property.</p>
- * <h4>startup function to boot the application.</h4>
- *
- * @see module:facade The facade is the main entry point
- *
- * @param {object} $ the jquery instance
- * @param {object} bootstrap the bootstrap js part
- * @param {object} the Facade object
+/**
+ * Entry point
  */
 function($, bootstrap, Facade) {
   var params = {

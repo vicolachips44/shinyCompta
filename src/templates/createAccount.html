@@ -1,1 +1,51 @@
-<h3>Create account form</h3>
+<form>
+  <div class="row">
+    <h4 data-bind="text: welcomeMsg" class="text-center tca-welcome-msg">/h4>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-2 text-right">
+      <label class="form-control" for="accountName">* Nom du compte:</label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="accountName" placeholder="Nom du compte" data-bind="value: account.name">
+      <span class="tca-form-error" data-bind="text: account.getValidator().nameErr"></span>
+    </div>
+    <div class="col-md-2">&nbsp;</div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-2 text-right">
+      <label class="form-control" for="initialAmount">* Solde:</label>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="initialAmount" placeholder="Montant initial" data-bind="value: account.amount">
+      <span class="tca-form-error" data-bind="text: account.getValidator().amountErr"></span>
+    </div>
+    <div class="col-md-2">&nbsp;</div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-2 text-right">
+      <label class="form-control tca-form-ctrl" for="accountType">* Type de compte:</label>
+    </div>
+    <div class="col-md-6">
+    <select class="form-control" name="accountType"
+      data-bind="options: accountTypes,
+                optionsText:'name',
+                optionsCaption:'Selectionner...',
+                optionsValue:'cid', value: account.accTypeId">
+    </select>
+    <span class="tca-form-error" data-bind="text: account.getValidator().accTypeIdErr"></span>
+    </div>
+    <div class="col-md-2">&nbsp;</div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-2">&nbsp;</div>
+    <div class="col-md-8 text-right">
+      <button type="submit" class="btn btn-primary" name="btnCancel" data-bind="click: onBtnCancelClick">Annuler</button>
+      <button type="submit" class="btn btn-primary" name="btnSave" data-bind="click: onBtnSaveClick">Valider</button>
+    </div>
+    <div class="col-md-2">&nbsp;</div>
+  </div>
+</form>

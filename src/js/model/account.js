@@ -5,9 +5,9 @@ define([
 ],
 /**
  * This is the Account object.
- * Account object can have one ore more Expense object
+ * Account has a collection of Expense.
  *
- * @exports Account
+ * @exports model/Account
  */
 function(ko, AccountValidator, $) {
 
@@ -21,9 +21,14 @@ function(ko, AccountValidator, $) {
    * @constructor
    */
   function Account() {
-    this.name         = ko.observable('');
-    this.amount       = ko.observable(0);
-    this.accTypeId    = ko.observable();
+    /** @property name {Observable-string} The name of the account **/
+    this.name = ko.observable('');
+
+    /** @property amount {Observable-float} The initial value of the account **/
+    this.amount = ko.observable(0);
+
+    /** @property accTypeId {Observable-int} The type of account id **/
+    this.accTypeId = ko.observable();
   }
 
   Account.prototype.constructor = Account;
