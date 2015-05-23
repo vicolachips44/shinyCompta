@@ -1,7 +1,6 @@
 define([
   'knockout',
-  'accountValidator',
-  'jquery'
+  'accountValidator'
 ],
 /**
  * This is the Account object.
@@ -9,7 +8,7 @@ define([
  *
  * @exports model/Account
  */
-function(ko, AccountValidator, $) {
+function(ko, AccountValidator) {
 
   'use strict';
 

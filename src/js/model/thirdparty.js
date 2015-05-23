@@ -1,6 +1,5 @@
 define([
-  'knockout',
-  'jquery'
+  'knockout'
 ],
 /**
  * Represents an object to associate a third party
@@ -8,7 +7,9 @@ define([
  *
  * @exports model/ThirdParty
  */
-function(ko, $) {
+function(ko) {
+
+  'use strict';
 
   /**
    * ThirdParty constructor

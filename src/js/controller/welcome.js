@@ -8,7 +8,7 @@ define([
  * @exports controller/welcome
  *
  **/
-function($, ko, html) {
+function($, ko) {
 
   'use strict';
 

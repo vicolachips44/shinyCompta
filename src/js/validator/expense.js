@@ -1,4 +1,4 @@
-define(['knockout'], function() {
+define(['knockout'], function(ko) {
 
   'use strict';
 

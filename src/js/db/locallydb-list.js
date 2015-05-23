@@ -41,7 +41,7 @@ define(['underscore'], function(_) {
       if (typeof selection === 'string') {
         /*jshint evil: true */
         selection = selection.replace(/@/g, 'element.');
-        return new List(_.filter(this.items, function(element) {
+        return new List(_.filter(this.items, function() {
           return eval(selection);
         }));
       } else {
@@ -52,7 +52,7 @@ define(['underscore'], function(_) {
     sort: function(method) {
       /*jshint evil: true */
       method = method.replace(/@/g, 'element.');
-      return new List(_.sortBy(this.items, function(element) {
+      return new List(_.sortBy(this.items, function() {
         return eval(method);
       }));
     },
@@ -60,7 +60,7 @@ define(['underscore'], function(_) {
     group: function(method) {
       /*jshint evil: true */
       method = method.replace(/@/g, 'element.');
-      return _.groupBy(this.items, function(element) {
+      return _.groupBy(this.items, function() {
         return eval(method);
       });
     }

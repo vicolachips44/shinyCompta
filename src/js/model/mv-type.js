@@ -8,6 +8,8 @@ define([
  */
 function(ko) {
 
+  'use strict';
+
   /**
    * Default constructor
    *

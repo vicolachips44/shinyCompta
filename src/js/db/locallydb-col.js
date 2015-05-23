@@ -13,7 +13,6 @@ define(['underscore', 'locallydblist'], function(_, List) {
 
   function Coll(inName, inDb, inAutosave) {
     List.call(this);
-    var data;
     this.dbname = inName;
     this.db = inDb;
     this.autosave = inAutosave || true;
@@ -157,7 +156,7 @@ define(['underscore', 'locallydblist'], function(_, List) {
   };
 
   Coll.prototype.remove = function(cid) {
-    var element, i, ref = this.items, len = ref.length;
+    var i, ref = this.items, len = ref.length;
 
     for (i = 0; i < len; i++) {
       if (ref[i].cid === cid) {

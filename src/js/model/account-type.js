@@ -9,7 +9,7 @@ define(
  */
 function() {
 
-  'user strict';
+  'use strict';
 
   /**
    * Default constructor
@@ -50,4 +50,3 @@ function() {
 
   return AccountType;
 });
-

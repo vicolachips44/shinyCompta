@@ -1,9 +1,25 @@
-define(['underscore', 'locallydbcol'], function(_, Collection) {
+define([
+  'underscore',
+  'locallydbcol'
+],
+
+ /**
+  * Modules that contains the LocallyDb instance
+  *
+  * @exports db/DB
+  */
+function(_, Collection) {
   'use strict';
 
   var fs = require('fs'),
     path = require('path');
 
+
+  /**
+   * DB - Default constructor
+   *
+   * @param  {string} path The folder path to create the database into
+   */
   function DB(path) {
     var stats;
     this.path = path;
@@ -17,14 +33,31 @@ define(['underscore', 'locallydbcol'], function(_, Collection) {
     }
   }
 
+
+  /**
+   * Members instance
+   */
   DB.prototype =  {
     constructor: DB,
 
+
+    /**
+     * collection - The collection is the top level object
+     *
+     * @param  {string}  name     The name of the collection
+     * @param  {boolean} autosave If it should save on every insert, update (true by default)
+     */
     collection: function(name, autosave) {
       autosave = autosave || true;
       return new Collection(name, this, autosave);
     },
 
+
+    /**
+     * getCollectionNames - returns the collections name from the path of this db.
+     *
+     * @return {array} an array of names
+     */
     getCollectionNames: function() {
       var file, i, list, res, llen, _path;
 
