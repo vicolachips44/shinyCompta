@@ -1,6 +1,8 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+  'use strict';
+
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({});
@@ -14,7 +16,8 @@ module.exports = function(grunt) {
         'cp -r src/fonts distrib/',
         'cp src/package.json distrib/',
         'cp src/log4js-conf.json distrib/',
-        'cp -r src/node_modules distrib/'
+        'cp -r src/node_modules distrib/',
+        'cp -r src/resources distrib/'
       ].join('&&')
     },
     cpcss: {
@@ -25,6 +28,16 @@ module.exports = function(grunt) {
         'cp src/vendor/bootstrap/dist/css/bootstrap-theme.min.css src/css',
         'cp -r src/vendor/bootstrap/dist/fonts src/fonts',
         'cp src/vendor/toastr/toastr.min.css src/css'
+      ].join('&&')
+    },
+    debug: {
+      command: [
+        'nwbuild -r -v 0.12.1 src'
+      ].join('&&')
+    },
+    run: {
+      command: [
+        'nwbuild -r -v 0.12.1 distrib'
       ].join('&&')
     }
   });

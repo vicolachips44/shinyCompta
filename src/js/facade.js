@@ -120,6 +120,9 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
       _loadKoComp();
 
       ko.applyBindings(this, $('#ko_main_menu')[0]);
+
+      // brings the window to front
+      this.win.focus();
     },
 
     /**

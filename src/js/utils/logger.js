@@ -12,7 +12,6 @@ function() {
 
   var _logger = require('log4js');
 
-
   /**
    * Logger - Default constructor
    *
@@ -34,7 +33,6 @@ function() {
   Logger.prototype = {
     constructor: Logger,
 
-
     /**
      * trace - invokes the trace method of the logger
      *
@@ -44,7 +42,6 @@ function() {
       this.logger.trace(msg);
     },
 
-
     /**
      * debug - invokes the debug method of the logger
      *
@@ -53,7 +50,6 @@ function() {
     debug: function(msg) {
       this.logger.debug(msg);
     },
-
 
     /**
      * warn - warn message

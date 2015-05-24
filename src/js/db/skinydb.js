@@ -17,7 +17,6 @@ function(LocallyDb, AccountType) {
     _dbinst,
     _this = null,
 
-
     /**
      * Initialize the account types to default values.
      * @todo: translate the account types names to the current language.
@@ -37,7 +36,6 @@ function(LocallyDb, AccountType) {
       accountType.insert(ccTypes);
       _this.facade.logger.trace('account types have been created for the new database');
     };
-
 
   /**
    * SkinyDb - Default constructor
@@ -62,7 +60,6 @@ function(LocallyDb, AccountType) {
 
     _initAccountType(this.accountType);
   }
-
 
   /**
    * SkinyDb instance members

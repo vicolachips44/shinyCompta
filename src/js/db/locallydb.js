@@ -14,7 +14,6 @@ function(_, Collection) {
   var fs = require('fs'),
     path = require('path');
 
-
   /**
    * DB - Default constructor
    *
@@ -33,13 +32,11 @@ function(_, Collection) {
     }
   }
 
-
   /**
    * Members instance
    */
   DB.prototype =  {
     constructor: DB,
-
 
     /**
      * collection - The collection is the top level object
@@ -51,7 +48,6 @@ function(_, Collection) {
       autosave = autosave || true;
       return new Collection(name, this, autosave);
     },
-
 
     /**
      * getCollectionNames - returns the collections name from the path of this db.

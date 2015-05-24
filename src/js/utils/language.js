@@ -82,7 +82,6 @@ function(
   Language.prototype = {
     constructor: Language,
 
-
     /**
      * get - returns the corresponding language value from a token
      *
