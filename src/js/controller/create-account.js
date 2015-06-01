@@ -74,10 +74,20 @@ function($, ko, Account, toastr) {
      */
     onBtnSaveClick: function() {
       if (this.account.getValidator().validate()) {
-        var cid = this.facade.db.account.insert(this.account.toDto());
+        var cid = this.facade.db.account.insert(this.account.toDto()),
+          msgCreated;
+
         this.account.cid(cid);
 
-        toastr.info('Le compte ' + this.account.name() + ' à été créé!');
+        // refresh the account list
+        this.facade.menu.accountList(this.facade.db.account.items);
+
+        // set the active account to the newly created account
+        this.facade.menu.activeAccount(ko.toJS(this.account));
+
+        msgCreated = this.facade.lng.format('account/newAccountCreated', [this.account.name()]);
+        toastr.info(msgCreated);
+
         this.facade.redirect('welcome');
       }
     },

@@ -2,26 +2,28 @@ define([
   'knockout'
 ],
 /**
- * MenuView Model layer.
- * This module contains the MenuViewModel to handle the behavior
+ * menu component Model layer.
+ * This module contains the menu component model to handle the behavior
  * of the component tca-menu.
  *
- * @exports component/MenuViewModel
+ * @exports component/Menucmp
  */
 function(ko) {
 
   'use strict';
 
-  var _this;
+  var _this,
+  _tpl = require('fs').readFileSync('templates/component/menuView.html', 'utf-8');
+
 
   /**
-   * MenuViewModel constructor
+   * Menucmp constructor
    *
    * @constructor
    *
    * @param params {object} a parameter object passed from the view.
    */
-  function MenuViewModel(params) {
+  function Menucmp(params) {
     _this = this;
     /** @property facade {Facade} a pointer to the facade instance */
     this.facade = params.facade;
@@ -60,8 +62,8 @@ function(ko) {
     });
   }
 
-  MenuViewModel.prototype = {
-    constructor: MenuViewModel,
+  Menucmp.prototype = {
+    constructor: Menucmp,
 
     /**
      * Calls the quit method of the Facade Application instance.
@@ -95,6 +97,9 @@ function(ko) {
     }
   };
 
-  return MenuViewModel;
+  return {
+    viewModel: Menucmp,
+    template: _tpl
+  };
 
 });

@@ -9,7 +9,8 @@
       "quit": "Quitter"
     },
     "account": {
-      "newAccount": "Nouveau Compte"
+      "newAccount": "Nouveau Compte",
+      "newAccountCreated": "Le compte {0} a été créé!"
     }
   },
   "en": {
@@ -22,7 +23,8 @@
       "quit": "Quit"
     },
     "account": {
-      "newAccount": "New Account"
+      "newAccount": "New Account",
+      "newAccountCreated": "The account {0} has been created!"
     }
   }
 }

@@ -24,7 +24,8 @@ requirejs.config({
     expense:           'model/expense',
     accountValidator:  'validator/account',
     expenseValidator:  'validator/expense',
-    menuViewModel:     'component/menuview-model'
+    menuViewModel:     'component/menuview-model',
+    menucmp:           'component/menucmp'
   },
   shim: {
     jquery: {
@@ -75,6 +76,8 @@ requirejs([
  * Entry point
  */
 function($, bootstrap, Facade) {
+  'use strict';
+
   var params = {
     debugMode: window.skinyDebugMode || false,
     version: '0.0.1'

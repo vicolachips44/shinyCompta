@@ -24,7 +24,9 @@ define([
  * @param {object} $ the jquery instance
  * @param {object} _ the underscore instance
  */
-function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
+function($, ko, _, Logger, Language, SkinyDb) {//, MenuViewModel) {
+
+  'use strict';
 
   var
     nwgui = require('nw.gui'),
@@ -52,11 +54,7 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
      * function to register knockout components and custom bindings
      */
     _loadKoComp = function() {
-      var tpl = fs.readFileSync('templates/component/menuView.html', 'utf-8');
-      ko.components.register('tca-menu', {
-        viewModel: MenuViewModel,
-        template: tpl
-      });
+      ko.components.register('tca-menu', {require: 'menucmp'});
     }
     ; /** private stuff END **/
 
@@ -110,11 +108,11 @@ function($, ko, _, Logger, Language, SkinyDb, MenuViewModel) {
       /** @property db {object} The db object instance */
       this.db            = new SkinyDb(this);
 
-      /** @property activeAccount {Observable} The knockout binding for the active selected account */
-      this.activeAccount = ko.observable('');
-
       /** @property context {Observable} The knockout binding for the controller context value */
       this.context       = ko.observable('');
+
+      /** @property menu the menu component **/
+      this.menu          = {};
 
       this.win.on('minimize', _minimizeRoutine);
       _loadKoComp();

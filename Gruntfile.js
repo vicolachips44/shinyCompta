@@ -74,7 +74,7 @@ module.exports = function(grunt) {
 
   grunt.config('jscs', {
     options: {
-      config: '.jscs.json'
+      config: '.jscsrc'
     },
     src: ['Gruntfile.js', 'src/js/**/*.js']
   });
@@ -106,5 +106,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('init', ['shell:cpcss']);
   grunt.registerTask('default', ['jshint', 'jscs', 'shell:build', 'requirejs:compile', 'htmlmin:dist']);
+  grunt.registerTask('debug', ['shell:debug']);
 
 };

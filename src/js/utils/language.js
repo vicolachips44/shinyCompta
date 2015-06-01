@@ -90,6 +90,11 @@ function(
      */
     get: function(token) {
       return this.lng.formatMessage(token);
+    },
+
+    format: function(token, args) {
+      var f = this.lng.messageFormatter(token);
+      return f(args);
     }
   };
 

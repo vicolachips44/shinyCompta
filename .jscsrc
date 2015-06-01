@@ -16,7 +16,7 @@
   "requireDotNotation": true,
   "requireCurlyBraces": true,
   "requireCommaBeforeLineBreak": true,
-  "disallowYodaConditions": true,
+  "disallowYodaConditions": null,
   "disallowTrailingWhitespace": true,
   // "disallowSpacesInsideObjectBrackets": {
   //   "allExcept": ["}"]
