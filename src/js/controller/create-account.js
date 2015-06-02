@@ -74,10 +74,7 @@ function($, ko, Account, toastr) {
      */
     onBtnSaveClick: function() {
       if (this.account.getValidator().validate()) {
-        var cid = this.facade.db.account.insert(this.account.toDto()),
-          msgCreated;
-
-        this.account.cid(cid);
+        this.account.cid(this.facade.db.account.insert(this.account.toDto()));
 
         // refresh the account list
         this.facade.menu.accountList(this.facade.db.account.items);
@@ -85,8 +82,10 @@ function($, ko, Account, toastr) {
         // set the active account to the newly created account
         this.facade.menu.activeAccount(ko.toJS(this.account));
 
-        msgCreated = this.facade.lng.format('account/newAccountCreated', [this.account.name()]);
-        toastr.info(msgCreated);
+        // save the current active account to configuration file
+        this.facade.config.configObj.activeAccount = this.account.name();
+
+        toastr.info(this.facade.lng.format('account/newAccountCreated', [this.account.name()]));
 
         this.facade.redirect('welcome');
       }

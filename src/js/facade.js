@@ -5,7 +5,8 @@ define([
   'logger',
   'language',
   'skinydb',
-  'menuViewModel'],
+  'shinyConfig'
+],
 /**
  * The facade module contains the Facade object witch is a centric object
  * within the application. The Facade object contains links to:
@@ -24,13 +25,12 @@ define([
  * @param {object} $ the jquery instance
  * @param {object} _ the underscore instance
  */
-function($, ko, _, Logger, Language, SkinyDb) {//, MenuViewModel) {
+function($, ko, _, Logger, Language, SkinyDb, Config) {
 
   'use strict';
 
   var
     nwgui = require('nw.gui'),
-    fs = require('fs'),
     nwWindow = nwgui.Window.get(),
     _this,
 
@@ -111,10 +111,21 @@ function($, ko, _, Logger, Language, SkinyDb) {//, MenuViewModel) {
       /** @property context {Observable} The knockout binding for the controller context value */
       this.context       = ko.observable('');
 
+      this.config        = new Config(
+        require('path').join(this.app.dataPath, 'shinyCompta.json'),
+        this
+      );
+
       /** @property menu the menu component **/
       this.menu          = {};
 
+      // maximize the window if it was...
+      if (this.config.configObj.winMaximized) {
+        this.win.maximize();
+      }
+
       this.win.on('minimize', _minimizeRoutine);
+
       _loadKoComp();
 
       ko.applyBindings(this, $('#ko_main_menu')[0]);
@@ -160,6 +171,12 @@ function($, ko, _, Logger, Language, SkinyDb) {//, MenuViewModel) {
     redirect: function(ctlname, data) {
       $('#ko_active_controller').data('value', ctlname);
       this.boot(data);
+    },
+
+    doQuit: function() {
+      this.config.save();
+      this.logger.trace('configuration saved to file');
+      this.app.quit();
     }
   };
 

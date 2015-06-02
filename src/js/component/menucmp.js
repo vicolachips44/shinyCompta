@@ -13,7 +13,8 @@ function(ko) {
   'use strict';
 
   var _this,
-  _tpl = require('fs').readFileSync('templates/component/menuView.html', 'utf-8');
+  _tpl = require('fs').readFileSync('templates/component/menuView.html', 'utf-8')
+   ;
 
 
   /**
@@ -30,11 +31,15 @@ function(ko) {
 
     this.facade.logger.trace('in MenuViewModel component constructor');
 
-    /** @property activeAccount {Observable} The knockout binding for the active selected account */
-    this.activeAccount = ko.observable('');
-
     /** @property activeAccount {ObservableArray} The list of account */
-    this.accountList = ko.observableArray([]);
+    this.accountList = ko.observableArray(this.facade.db.account.items);
+    console.log('configuration active account is ' + _this.facade.config.configObj.activeAccount);
+    console.log('retrieving object from name...');
+
+    var rs = _this.facade.db.account.where({name: _this.facade.config.configObj.activeAccount});
+
+    /** @property activeAccount {Observable} The knockout binding for the active selected account */
+    this.activeAccount = rs.items.length === 1 ? ko.observable(rs.items[0]) : ko.observable();
 
     // expose this instance as menu property of facade
     this.facade.menu   = this;
@@ -60,6 +65,14 @@ function(ko) {
         $('#menuview_btnDeleteAccount').hide();
       }
     });
+
+    /**
+     * update the configuration active account when ever it changes.
+     */
+    this.activeAccount.subscribe(function(account) {
+      _this.facade.logger.trace('MenuCmp::activeAccount changing to ' + account.name);
+      _this.facade.config.configObj.activeAccount = account.name;
+    });
   }
 
   Menucmp.prototype = {
@@ -70,7 +83,7 @@ function(ko) {
      */
     quitApp: function() {
       this.facade.logger.trace('MenuViewModel::quitApp > exiting application...');
-      this.facade.app.quit();
+      this.facade.doQuit();
     },
 
     /**

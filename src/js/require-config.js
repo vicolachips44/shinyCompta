@@ -24,8 +24,8 @@ requirejs.config({
     expense:           'model/expense',
     accountValidator:  'validator/account',
     expenseValidator:  'validator/expense',
-    menuViewModel:     'component/menuview-model',
-    menucmp:           'component/menucmp'
+    menucmp:           'component/menucmp',
+    shinyConfig:       'utils/config'
   },
   shim: {
     jquery: {

@@ -39,6 +39,7 @@ function() {
      * @param  {string} msg the message to trace
      */
     trace: function(msg) {
+      console.log(msg);
       this.logger.trace(msg);
     },
 
