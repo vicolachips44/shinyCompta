@@ -67,7 +67,7 @@ function(ko) {
      * update the configuration active account when ever it changes.
      */
     this.activeAccount.subscribe(function(account) {
-      if (account !== null) {
+      if (account !== null && typeof account !== 'undefined') {
         _this.facade.logger.trace('MenuCmp::activeAccount changing to ' + account.name);
         _this.facade.config.configObj.activeAccount = account.name;
       } else {
@@ -108,13 +108,17 @@ function(ko) {
      */
     deleteAccount: function() {
       var account = this.activeAccount();
-      if (account.cid > -1) {
+      if (typeof account !== 'undefined' && account.cid > -1) {
+        // @todo: ask for deletion if account has some expenses...
         var cid = account.cid;
         this.facade.logger.trace('account to be removed : ' + account.name);
         this.activeAccount(null);
         this.facade.db.account.remove(cid);
         this.facade.logger.trace('account with cid ' + cid + ' removed');
         this.accountList(this.facade.db.account.items);
+        if (this.accountList.length === 0) {
+          this.facade.win.reload();
+        }
       } else {
         this.facade.logger.trace('activeAccount observable is empty');
       }
