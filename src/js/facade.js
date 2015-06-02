@@ -5,7 +5,8 @@ define([
   'logger',
   'language',
   'skinydb',
-  'shinyConfig'
+  'shinyConfig',
+  'menucmp'
 ],
 /**
  * The facade module contains the Facade object witch is a centric object
@@ -54,6 +55,7 @@ function($, ko, _, Logger, Language, SkinyDb, Config) {
      * function to register knockout components and custom bindings
      */
     _loadKoComp = function() {
+      // @warning menucmp is a dependency off this module
       ko.components.register('tca-menu', {require: 'menucmp'});
     }
     ; /** private stuff END **/

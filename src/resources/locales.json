@@ -10,7 +10,10 @@
     },
     "account": {
       "newAccount": "Nouveau Compte",
-      "newAccountCreated": "Le compte {0} a été créé!"
+      "newAccountCreated": "Le compte {0} a été créé!",
+      "checkingAccount": "Compte chèque",
+      "currentAccount": "Compte courant",
+      "savingAccount": "Compte d'épargne"
     }
   },
   "en": {
@@ -24,7 +27,10 @@
     },
     "account": {
       "newAccount": "New Account",
-      "newAccountCreated": "The account {0} has been created!"
+      "newAccountCreated": "The account {0} has been created!",
+      "checkingAccount": "Checking account",
+      "currentAccount": "Current account",
+      "savingAccount": "Saving account"
     }
   }
 }

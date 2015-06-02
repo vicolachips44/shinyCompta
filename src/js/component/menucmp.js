@@ -16,7 +16,6 @@ function(ko) {
   _tpl = require('fs').readFileSync('templates/component/menuView.html', 'utf-8')
    ;
 
-
   /**
    * Menucmp constructor
    *
@@ -29,12 +28,10 @@ function(ko) {
     /** @property facade {Facade} a pointer to the facade instance */
     this.facade = params.facade;
 
-    this.facade.logger.trace('in MenuViewModel component constructor');
+    this.facade.logger.trace('in Menucmp component constructor');
 
     /** @property activeAccount {ObservableArray} The list of account */
     this.accountList = ko.observableArray(this.facade.db.account.items);
-    console.log('configuration active account is ' + _this.facade.config.configObj.activeAccount);
-    console.log('retrieving object from name...');
 
     var rs = _this.facade.db.account.where({name: _this.facade.config.configObj.activeAccount});
 
@@ -48,14 +45,14 @@ function(ko) {
     this.btnDelete     = this.facade.lng.get('menu/delete');
     this.btnQuit       = this.facade.lng.get('menu/quit');
 
-    this.facade.logger.trace('MenuViewModel:: constructor > observable setted!');
+    this.facade.logger.trace('Menucmp:: constructor > observable setted!');
 
     /**
      * Subscribtion to the context value changing in facade object
      * to updat the UI.
      */
     this.facade.context.subscribe(function(newValue) {
-      _this.facade.logger.trace('MenuViewModel::context changing to ' + newValue);
+      _this.facade.logger.trace('Menucmp::context changing to ' + newValue);
 
       if (newValue === 'welcome') {
         $('#menuview_btnAddAccount').show();
@@ -70,8 +67,12 @@ function(ko) {
      * update the configuration active account when ever it changes.
      */
     this.activeAccount.subscribe(function(account) {
-      _this.facade.logger.trace('MenuCmp::activeAccount changing to ' + account.name);
-      _this.facade.config.configObj.activeAccount = account.name;
+      if (account !== null) {
+        _this.facade.logger.trace('MenuCmp::activeAccount changing to ' + account.name);
+        _this.facade.config.configObj.activeAccount = account.name;
+      } else {
+        _this.facade.config.configObj.activeAccount = '';
+      }
     });
   }
 
@@ -82,7 +83,7 @@ function(ko) {
      * Calls the quit method of the Facade Application instance.
      */
     quitApp: function() {
-      this.facade.logger.trace('MenuViewModel::quitApp > exiting application...');
+      this.facade.logger.trace('Menucmp::quitApp > exiting application...');
       this.facade.doQuit();
     },
 
@@ -106,7 +107,17 @@ function(ko) {
      * @todo: delete the active account
      */
     deleteAccount: function() {
-      this.facade.logger.trace('todo: delete account');
+      var account = this.activeAccount();
+      if (account.cid > -1) {
+        var cid = account.cid;
+        this.facade.logger.trace('account to be removed : ' + account.name);
+        this.activeAccount(null);
+        this.facade.db.account.remove(cid);
+        this.facade.logger.trace('account with cid ' + cid + ' removed');
+        this.accountList(this.facade.db.account.items);
+      } else {
+        this.facade.logger.trace('activeAccount observable is empty');
+      }
     }
   };
 

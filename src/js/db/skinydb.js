@@ -28,9 +28,9 @@ function(LocallyDb, AccountType) {
       }
 
       var ccTypes = [
-        new AccountType('compte chèques').toDto(),
-        new AccountType('compte courant').toDto(),
-        new AccountType('compte d\'épargne').toDto()
+        new AccountType(_this.facade.lng.get('account/currentAccount')).toDto(),
+        new AccountType(_this.facade.lng.get('account/checkingAccount')).toDto(),
+        new AccountType(_this.facade.lng.get('account/savingAccount')).toDto()
       ];
 
       accountType.insert(ccTypes);
