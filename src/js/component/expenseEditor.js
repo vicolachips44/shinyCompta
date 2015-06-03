@@ -18,13 +18,21 @@ function(ko) {
 
   function ExpenseEditor(params) {
     _this = this;
-    /** @property ctrl {Welcome} a pointer to the root controller of this instance */
-    this.ctrl = params.ctrl;
 
-    this.ctrl.facade.logger.trace('in ExpenseEditor component constructor');
+    this.facade = params.facade;
+    //
+    this.facade.logger.trace('in ExpenseEditor component constructor');
 
     this.editedExpense = ko.observable();
   }
+
+  ExpenseEditor.prototype = {
+    constructor: ExpenseEditor,
+
+    doSomething: function() {
+      alert('something...');
+    }
+  };
 
   return {
     viewModel: ExpenseEditor,

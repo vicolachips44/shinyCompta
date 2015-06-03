@@ -10,16 +10,20 @@
     <link rel="stylesheet" href="css/shinycompta.css">
   </head>
   <body>
-    <div id="ko_active_controller" data-value="welcome"/>
-
-    <div id="ko_main_menu" class="container-fluid">
-      <nav class="navbar navbar-default navbar-static-top"
-        data-bind='component: {name: "tca-menu", params: {facade: $root, context: "home"}}'>
-      </nav>
-
+    <div id="wrap">
+      <div id="ko_active_controller" data-value="welcome"></div>
+      <div id="ko_main_menu" class="container-fluid">
+        <nav class="navbar navbar-default navbar-static-top"
+          data-bind='component: {name: "tca-menu", params: {facade: $root, context: "home"}}'>
+        </nav>
+      </div>
+      <div id="ko_page_content" class="container-fluid"></div>
+      <div id="push"></div>
     </div>
-    <div id="ko_page_content" class="container-fluid"></div>
 
+    <div id="footer">
+      <nav data-bind='component: {name: "tca-expense-editor", params: {facade: $root, context: "home"}}'></nav>
+    </div>
     <script type="text/javascript" src="js/bootloader.js"></script>
   </body>
 </html>

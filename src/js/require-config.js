@@ -25,7 +25,7 @@ requirejs.config({
     accountValidator:  'validator/account',
     expenseValidator:  'validator/expense',
     menucmp:           'component/menucmp',
-    expenseEditor:     'component/expense-editor',
+    expenseEditor:     'component/expenseEditor',
     shinyConfig:       'utils/config'
   },
   shim: {
@@ -67,7 +67,10 @@ requirejs.config({
 requirejs([
   'jquery',
   'bootstrap',
+  'knockout',
   'facade',
+  'expenseEditor',
+  'menucmp',
   // BEGIN controllers-----------------------------------------------
   'welcome',
   'createAccount'
@@ -76,7 +79,7 @@ requirejs([
 /**
  * Entry point
  */
-function($, bootstrap, Facade) {
+function($, bootstrap, ko, Facade) {
   'use strict';
 
   var params = {
@@ -84,6 +87,9 @@ function($, bootstrap, Facade) {
     version: '0.0.1'
   },
   facade;
+
+  ko.components.register('tca-expense-editor', {require: 'expenseEditor'});
+  ko.components.register('tca-menu', {require: 'menucmp'});
 
   facade = new Facade();
   facade.initialize(params);

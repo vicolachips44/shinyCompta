@@ -5,9 +5,7 @@ define([
   'logger',
   'language',
   'skinydb',
-  'shinyConfig',
-  'menucmp',
-  'expenseEditor'
+  'shinyConfig'
 ],
 /**
  * The facade module contains the Facade object witch is a centric object
@@ -50,15 +48,6 @@ function($, ko, _, Logger, Language, SkinyDb, Config) {
         tray = null;
         _this.logger.debug('window has been restored...');
       });
-    },
-
-    /**
-     * function to register knockout components and custom bindings
-     */
-    _loadKoComp = function() {
-      // @warning componenets must be setted has dependencies for this module (see define on top)
-      ko.components.register('tca-menu', {require: 'menucmp'});
-      ko.components.register('tca-expense-editor', {require: 'expenseEditor'});
     }
     ; /** private stuff END **/
 
@@ -130,9 +119,7 @@ function($, ko, _, Logger, Language, SkinyDb, Config) {
 
       this.win.on('minimize', _minimizeRoutine);
 
-      _loadKoComp();
-
-      ko.applyBindings(this, $('#ko_main_menu')[0]);
+      ko.applyBindings(this);
 
       // brings the window to front
       this.win.focus();
