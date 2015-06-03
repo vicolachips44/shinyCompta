@@ -53,6 +53,7 @@ function($, ko) {
       ko.applyBindings(this, binding);
 
       this.facade.logger.trace('binding done for welcome controller');
+      this.facade.logger.trace('active account name is ' + this.facade.menu.activeAccount().name);
     }
   };
 

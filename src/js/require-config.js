@@ -25,6 +25,7 @@ requirejs.config({
     accountValidator:  'validator/account',
     expenseValidator:  'validator/expense',
     menucmp:           'component/menucmp',
+    expenseEditor:     'component/expense-editor',
     shinyConfig:       'utils/config'
   },
   shim: {
