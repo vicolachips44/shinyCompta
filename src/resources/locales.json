@@ -6,6 +6,7 @@
     "menu": {
       "new": "Nouveau",
       "delete": "Supprimer",
+      "save": "Enregistrer",
       "quit": "Quitter"
     },
     "account": {
@@ -23,6 +24,7 @@
     "menu": {
       "new": "New",
       "delete": "Delete",
+      "save": "Save",
       "quit": "Quit"
     },
     "account": {
