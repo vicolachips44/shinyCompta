@@ -14,7 +14,9 @@
       "newAccountCreated": "Le compte {0} a été créé!",
       "checkingAccount": "Compte chèque",
       "currentAccount": "Compte courant",
-      "savingAccount": "Compte d'épargne"
+      "savingAccount": "Compte d'épargne",
+      "mvDebit": "Débit",
+      "mvCredit": "Crédit"
     }
   },
   "en": {
@@ -32,7 +34,9 @@
       "newAccountCreated": "The account {0} has been created!",
       "checkingAccount": "Checking account",
       "currentAccount": "Current account",
-      "savingAccount": "Saving account"
+      "savingAccount": "Saving account",
+      "mvDebit": "Debit",
+      "mvCredit": "Credit"
     }
   }
 }

@@ -51,7 +51,7 @@ function(LocallyDb, AccountType) {
     _this            = this;
     this.facade      = facade;
     this.account     = _dbinst.collection('accounts');
-    this.categorie   = _dbinst.collection('categories');
+    this.category    = _dbinst.collection('categories');
     this.thirdparty  = _dbinst.collection('thirdParties');
     this.expense     = _dbinst.collection('expenses');
     this.accountType = _dbinst.collection('accountTypes');

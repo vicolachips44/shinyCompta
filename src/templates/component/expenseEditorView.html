@@ -15,9 +15,7 @@
         <tr>
           <td><input type="text" class="form-control input-sm" style="width: 90px"></td>
           <td>
-            <select class="form-control input-sm">
-              <option>Débit</option>
-              <option>Crédit</option>
+            <select data-bind="options: mvTypeList, value: mvType, optionsText: 'label'" class="form-control input-sm">
             </select>
           </td>
           <td><input type="numeric" class="form-control input-sm" style="width: 110px"></td>
