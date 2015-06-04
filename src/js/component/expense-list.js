@@ -11,16 +11,39 @@ function(ko) {
   'use strict';
 
   var _this,
-  _tpl = require('fs').readFileSync('templates/component/expenseListView.html', 'utf-8');
+  _tpl = require('fs').readFileSync('templates/component/expenseListView.html', 'utf-8'),
+  _substractHeight = 206;
 
-  function ExpenseList() {
+  function ExpenseList(params) {
     _this = this;
+    this.facade = params.facade;
+    this.facade.logger.trace('in expenseList constructor');
     this.selectedExpense = ko.observable();
-    this.expenseItems = ko.observableArray([]);
+    this.expenseItems = ko.observableArray([{
+      cid: 1,
+      date: '26/03/2015',
+      mvTypeValue: 'Débit',
+      amount: '800,32 €',
+      thirdparty: 'Crédit Agricole',
+      description: 'Frais annuel de restauration',
+      category: 'Frais bancaire',
+      balance: '1390 €'
+    }]);
+
+    this.facade.win.on('resize', function(width, height) {
+      $('#tca_expense_list').css('height', height - _substractHeight);
+    });
+
+    $('#tca_expense_list').css('height', this.facade.win.height - _substractHeight);
   }
 
   ExpenseList.prototype = {
-    constructor: ExpenseList
+    constructor: ExpenseList,
+
+    onRowClick: function(item) {
+      // item is an expense (ex item.cid)
+      _this.facade.logger.trace('setting expense editor current selected item...' + item.cid);
+    }
   };
 
   return {

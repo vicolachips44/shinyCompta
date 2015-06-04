@@ -1,13 +1,29 @@
+
 <div class="row">
-  <table class="table table-condensed">
-    <thead>
-      <th>todo show expenses</th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          empty
-        </td>
+<table class="table" style="margin-bottom: -14px">
+<thead>
+  <th style="width: 140px;text-align: center">Date</th>
+  <th style="width: 120px;text-align: center">Nature</th>
+  <th style="width: 160px;text-align: center">Montant</th>
+  <th style="width: 160px;text-align: center">Tier</th>
+  <th>Description</th>
+  <th style="width: 140px;text-align: center">Catégorie</th>
+  <th style="width: 160px; text-align: center">Balance</th>
+</thead>
+</table>
+</div>
+<div id="tca_expense_list" class="row tca-list-editor" style="margin-top: 12px">
+  <table class="table table-condensed table-bordered table-hover">
+    <tbody data-bind="foreach: expenseItems">
+      <tr data-bind="click: $parent.onRowClick">
+        <td style="display: none" data-bind="text: cid"></td>
+        <td style="width: 140px;text-align: center" data-bind="text: date"></td>
+        <td style="width: 120px" data-bind="text: mvTypeValue"></td>
+        <td style="width: 160px;text-align: right" data-bind="text: amount"></td>
+        <td style="width: 160px" data-bind="text: thirdparty"></td>
+        <td data-bind="text: description"></td>
+        <td style="width: 140px" data-bind="text: category"></td>
+        <td style="width: 160px; text-align: right" data-bind="text: balance"></td>
       </tr>
     </tbody>
   </table>
