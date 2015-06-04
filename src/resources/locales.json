@@ -1,7 +1,9 @@
 {
   "fr": {
     "common": {
-      "hello": "Bienvenue dans skiny compta! commençons par créer un Compte"
+      "hello": "Bienvenue dans skiny compta! commençons par créer un Compte",
+      "date": "Date",
+      "description": "Description"
     },
     "menu": {
       "new": "Nouveau",
@@ -16,12 +18,18 @@
       "currentAccount": "Compte courant",
       "savingAccount": "Compte d'épargne",
       "mvDebit": "Débit",
-      "mvCredit": "Crédit"
+      "mvCredit": "Crédit",
+      "mvType": "Nature",
+      "amount": "Montant",
+      "thirdparty": "Tier",
+      "category": "Catégorie"
     }
   },
   "en": {
     "common": {
-      "hello": "Welcome to skiny account manager! let's start with a new Account"
+      "hello": "Welcome to skiny account manager! let's start with a new Account",
+      "date": "Date",
+      "description": "Description"
     },
     "menu": {
       "new": "New",
@@ -36,7 +44,11 @@
       "currentAccount": "Current account",
       "savingAccount": "Saving account",
       "mvDebit": "Debit",
-      "mvCredit": "Credit"
+      "mvCredit": "Credit",
+      "mvType": "Type",
+      "amount": "Amount",
+      "thirdparty": "Thirdparty",
+      "category": "Category"
     }
   }
 }

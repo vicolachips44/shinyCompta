@@ -4,27 +4,25 @@
     <form class="form-inline" role="form">
       <table>
         <tr>
-          <td class="text-center"><label>Date</label></td>
-          <td class="text-center"><label>Nature</label></td>
-          <td class="text-center"><label>Montant</label></td>
-          <td class="text-center"><label>Tiers</label></td>
-          <td class="text-center"><label>Libellé</label></td>
-          <td class="text-center"><label>Catégorie</label></td>
-          <td class="text-center"><label>Edition</label></td>
+          <td class="text-center"><label data-bind="text: dateLabel"></label></td>
+          <td class="text-center"><label data-bind="text: mvTypeLabel"></label></td>
+          <td class="text-center"><label data-bind="text: amountLabel"></label></td>
+          <td class="text-center"><label data-bind="text: thirdpartyLabel"></label></td>
+          <td class="text-center"><label data-bind="text: descriptionLabel"></label></td>
+          <td class="text-center"><label data-bind="text: categoryLabel"></label></td>
+          <td class="text-center"><label>&nbsp;</label></td>
         </tr>
         <tr>
-          <td><input type="text" class="form-control input-sm" style="width: 90px"></td>
-          <td>
+          <td><!-- date field -->
+            <input type="date" class="form-control input-sm" style="width: 140px">
+          </td>
+          <td><!-- mv type field -->
             <select data-bind="options: mvTypeList, value: mvType, optionsText: 'label'" class="form-control input-sm">
             </select>
           </td>
           <td><input type="numeric" class="form-control input-sm" style="width: 110px"></td>
           <td>
-            <select class="form-control input-sm" style="width: 140px">
-              <option>Nouveau...</option>
-              <option>Popo</option>
-              <option>Mopo</option>
-              <option>Jopo</option>
+            <select data-bind="options: thirdpartyList, value: thirdparty, optionsText: 'name'" class="form-control input-sm" style="width: 140px">
             </select>
           </td>
           <td><input type="text" class="form-control input-sm" style="width: 250px"></td>
@@ -40,8 +38,6 @@
               data-bind="value: btnSaveLabel, click: btnSaveClick"></button>
             <input id="exeBtnNew" type="button" class="btn btn-xs btn-success" name="btnNew"
               data-bind="value: btnNewLabel, click: btnNewClick"></button>
-            <input id="exeBtnDelete" type="button" class="btn btn-xs btn-danger" name="btnDelete"
-              data-bind="value: btnDeleteLabel, click: btnDeleteClick"></button>
             &nbsp;
           </td>
         </tr>

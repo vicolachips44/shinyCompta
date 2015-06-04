@@ -23,11 +23,9 @@ function(ko) {
     });
 
     _this.amount(null);
-    _this.thirdparty(null);
+    _this.thirdparty({name: ''});
     _this.description(null);
-    _this.category(null);
-
-    $('#exeBtnDelete').attr('disabled', 'disabled');
+    _this.category({name: ''});
   }
   ;
 
@@ -40,9 +38,14 @@ function(ko) {
 
     this.editedExpense = ko.observable();
 
-    this.btnNewLabel    = this.facade.lng.get('menu/new');
-    this.btnSaveLabel   = this.facade.lng.get('menu/save');
-    this.btnDeleteLabel = this.facade.lng.get('menu/delete');
+    this.btnNewLabel      = this.facade.lng.get('menu/new');
+    this.btnSaveLabel     = this.facade.lng.get('menu/save');
+    this.dateLabel        = this.facade.lng.get('common/date');
+    this.mvTypeLabel      = this.facade.lng.get('account/mvType');
+    this.amountLabel      = this.facade.lng.get('account/amount');
+    this.thirdpartyLabel  = this.facade.lng.get('account/thirdparty');
+    this.descriptionLabel = this.facade.lng.get('common/description');
+    this.categoryLabel    = this.facade.lng.get('account/category');
 
     this.dateval      = ko.observable();
     this.mvType       = ko.observable({label: this.facade.lng.get('account/mvDebit'), value: -1});
@@ -52,13 +55,13 @@ function(ko) {
     this.category     = ko.observable();
 
     this.thirdpartyList = ko.observableArray(
-        [_newToken].concat(
+        [{name: ''}, {name: _newToken}].concat(
           this.facade.db.thirdparty.items
         )
     );
 
     this.categoryList = ko.observableArray(
-        [_newToken].concat(
+        [{name: ''}, {name: _newToken}].concat(
           this.facade.db.category.items
         )
     );
