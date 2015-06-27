@@ -11,8 +11,8 @@ function(ko) {
   'use strict';
 
   var _this,
-  _tpl = require('fs').readFileSync('templates/component/expenseListView.html', 'utf-8'),
-  _substractHeight = 206;
+  _tpl = require('fs').readFileSync('templates/component/expenseListView.html', 'utf-8')
+  ;
 
   function ExpenseList(params) {
     _this = this;
@@ -29,12 +29,6 @@ function(ko) {
       category: 'Frais bancaire',
       balance: '1390 €'
     }]);
-
-    this.facade.win.on('resize', function(width, height) {
-      $('#tca_expense_list').css('height', height - _substractHeight);
-    });
-
-    $('#tca_expense_list').css('height', this.facade.win.height - _substractHeight);
   }
 
   ExpenseList.prototype = {

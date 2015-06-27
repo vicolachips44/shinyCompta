@@ -78,9 +78,11 @@ function(ko) {
      */
     this.facade.context.subscribe(function(newValue) {
       if (newValue === 'welcome') {
-        $('#tca_expense_editor').show();
+        _this.facade.logger.trace('showing the editor panel...');
+        $('div.tca-expense-editor').show();
       } else {
-        $('#tca_expense_editor').hide();
+        _this.facade.logger.trace('hiding the editor panel...');
+        $('div.tca-expense-editor').hide();
       }
     });
 
