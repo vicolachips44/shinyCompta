@@ -34,9 +34,11 @@ function(ko) {
   ExpenseList.prototype = {
     constructor: ExpenseList,
 
-    onRowClick: function(item) {
+    onRowClick: function(item, event) {
       // item is an expense (ex item.cid)
       _this.facade.logger.trace('setting expense editor current selected item...' + item.cid);
+      // target is the clicked element (here TD)
+      $(event.target).closest('tr').css('background-color', 'lightgray');
     }
   };
 
