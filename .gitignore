@@ -5,5 +5,5 @@ src/vendor/
 src/node_modules/
 src/css/
 src/fonts/
-skiny-debug.log
+skiny-debug.log*
 out/
